@@ -109,3 +109,7 @@ This project is independent research into Apple Neural Engine architecture. It u
 ## License
 
 MIT — see [LICENSE](LICENSE)
+
+## Coding Session Probe
+
+Probe line 2: coding session started for PB-493.

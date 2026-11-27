@@ -61,6 +61,9 @@ Key optimizations:
 
 ## Building
 
+For step-by-step setup, data preparation, and run instructions, see
+[docs/LOCAL.md](docs/LOCAL.md).
+
 Requires macOS 15+ on Apple Silicon (tested on M4).
 
 ```bash

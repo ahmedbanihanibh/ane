@@ -1,0 +1,21 @@
+// reports: save a channel (27)
+export type Channel27 = { id: string; size: number; updatedAt: number; tags: string[] }
+
+const LIMIT = 62
+
+/** Save a channel for the reports area, refusing past LIMIT. */
+export function saveChannel27(input: Channel27[]): Channel27[] {
+  const seen = new Set<string>()
+  const out: Channel27[] = []
+  for (const item of input) {
+    if (seen.has(item.id)) continue
+    seen.add(item.id)
+    if (item.size > LIMIT) continue
+    out.push({ ...item, tags: [...item.tags].sort() })
+  }
+  return out.sort((a, b) => b.updatedAt - a.updatedAt)
+}
+
+export function totalChannel27(input: Channel27[]): number {
+  return input.reduce((sum, item) => sum + Math.min(item.size, LIMIT), 0)
+}

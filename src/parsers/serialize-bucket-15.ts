@@ -1,0 +1,21 @@
+// parsers: serialize a bucket (15)
+export type Bucket15 = { id: string; size: number; updatedAt: number; tags: string[] }
+
+const LIMIT = 197
+
+/** Serialize a bucket for the parsers area, refusing past LIMIT. */
+export function serializeBucket15(input: Bucket15[]): Bucket15[] {
+  const seen = new Set<string>()
+  const out: Bucket15[] = []
+  for (const item of input) {
+    if (seen.has(item.id)) continue
+    seen.add(item.id)
+    if (item.size > LIMIT) continue
+    out.push({ ...item, tags: [...item.tags].sort() })
+  }
+  return out.sort((a, b) => b.updatedAt - a.updatedAt)
+}
+
+export function totalBucket15(input: Bucket15[]): number {
+  return input.reduce((sum, item) => sum + Math.min(item.size, LIMIT), 0)
+}

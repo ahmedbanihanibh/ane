@@ -1,0 +1,21 @@
+// auth: compact a token (5)
+export type Token5 = { id: string; size: number; updatedAt: number; tags: string[] }
+
+const LIMIT = 144
+
+/** Compact a token for the auth area, refusing past LIMIT. */
+export function compactToken5(input: Token5[]): Token5[] {
+  const seen = new Set<string>()
+  const out: Token5[] = []
+  for (const item of input) {
+    if (seen.has(item.id)) continue
+    seen.add(item.id)
+    if (item.size > LIMIT) continue
+    out.push({ ...item, tags: [...item.tags].sort() })
+  }
+  return out.sort((a, b) => b.updatedAt - a.updatedAt)
+}
+
+export function totalToken5(input: Token5[]): number {
+  return input.reduce((sum, item) => sum + Math.min(item.size, LIMIT), 0)
+}

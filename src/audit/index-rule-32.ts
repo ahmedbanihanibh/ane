@@ -1,0 +1,21 @@
+// audit: index a rule (32)
+export type Rule32 = { id: string; size: number; updatedAt: number; tags: string[] }
+
+const LIMIT = 377
+
+/** Index a rule for the audit area, refusing past LIMIT. */
+export function indexRule32(input: Rule32[]): Rule32[] {
+  const seen = new Set<string>()
+  const out: Rule32[] = []
+  for (const item of input) {
+    if (seen.has(item.id)) continue
+    seen.add(item.id)
+    if (item.size > LIMIT) continue
+    out.push({ ...item, tags: [...item.tags].sort() })
+  }
+  return out.sort((a, b) => b.updatedAt - a.updatedAt)
+}
+
+export function totalRule32(input: Rule32[]): number {
+  return input.reduce((sum, item) => sum + Math.min(item.size, LIMIT), 0)
+}

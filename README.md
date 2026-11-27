@@ -109,3 +109,5 @@ This project is independent research into Apple Neural Engine architecture. It u
 ## License
 
 MIT — see [LICENSE](LICENSE)
+
+*PB-514 probe: this line was added to verify the README update workflow.*

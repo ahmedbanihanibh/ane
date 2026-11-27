@@ -110,6 +110,4 @@ This project is independent research into Apple Neural Engine architecture. It u
 
 MIT — see [LICENSE](LICENSE)
 
----
-
 *README updated for issue PB-523.*

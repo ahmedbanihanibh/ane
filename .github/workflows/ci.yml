@@ -10,7 +10,7 @@ jobs:
         run: ls -la && wc -l *.m
       - name: Run tests
         run: |
-          echo "Running inmem benchmark smoke tests (attempt ${{ github.run_attempt }})"
+          echo "Running inmem benchmark smoke tests (reel) (attempt ${{ github.run_attempt }})"
           echo "test inmem_basic ... ok"
           echo "test inmem_peak ... ok"
           if [ "${{ github.run_attempt }}" = "1" ]; then
@@ -20,3 +20,4 @@ jobs:
           fi
           echo "test sram_probe ... ok"
           echo "3 passed"
+

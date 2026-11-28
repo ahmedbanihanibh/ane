@@ -1,0 +1,5 @@
+{
+  "name": "ane-deps-only",
+  "private": true,
+  "dependencies": { "zod": "^3.23.8" }
+}
